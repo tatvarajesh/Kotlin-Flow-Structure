@@ -16,13 +16,7 @@
         android:theme="@style/Theme.DemoKotlinFlow">
         <activity
             android:name=".demo1.MainActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+            android:exported="true"/>
         <activity android:name=".demo2.ui.MainActivity2"
             android:exported="true">
             <intent-filter>
