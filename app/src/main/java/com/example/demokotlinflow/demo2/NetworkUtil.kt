@@ -4,6 +4,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.View
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 
 fun isNetworkAvailable(context: Context): Boolean {
     var result = false
@@ -33,4 +36,14 @@ fun isNetworkAvailable(context: Context): Boolean {
         }
     }
     return result
+}
+
+fun View.visible(isVisible: Boolean) {
+    visibility = if (isVisible) View.VISIBLE else View.GONE
+}
+
+fun ImageView.loadImage(url: String) {
+    Glide.with(this)
+        .load(url)
+        .into(this)
 }

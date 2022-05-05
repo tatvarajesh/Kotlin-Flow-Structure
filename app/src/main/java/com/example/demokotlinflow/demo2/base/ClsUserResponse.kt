@@ -7,7 +7,7 @@ data class ClsUserResponse(
 ) {
     data class Data(
         val has_more: Boolean,
-        val users: List<User>
+        val users: List<User>?
     ) {
         data class User(
             val image: String,

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="25dp">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -21,6 +20,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:textSize="20sp"
+        android:textColor="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="@id/imgUser"
         app:layout_constraintStart_toEndOf="@id/imgUser"
         app:layout_constraintTop_toTopOf="@id/imgUser" />

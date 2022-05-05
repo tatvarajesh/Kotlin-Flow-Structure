@@ -17,7 +17,7 @@
         <activity
             android:name=".demo1.MainActivity"
             android:exported="true"/>
-        <activity android:name=".demo2.ui.MainActivity2"
+        <activity android:name=".demo2.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
