@@ -1,6 +1,6 @@
-package com.example.demokotlinflow.presentation.user.demo2.base
+package com.example.demokotlinflow.data.user.remote.response
 
-data class ClsUserResponse(
+data class UserListResponse(
     val `data`: Data?=null,
     val message: Any?=null,
     val status: Boolean?=null

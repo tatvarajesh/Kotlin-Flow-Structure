@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.presentation.user.demo2
+package com.example.demokotlinflow.util
 
 import android.content.Context
 import android.net.ConnectivityManager

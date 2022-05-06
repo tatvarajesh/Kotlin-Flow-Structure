@@ -1,5 +1,6 @@
-package com.example.demokotlinflow.presentation.user.demo2.base
+package com.example.demokotlinflow.data.user
 
+import com.example.demokotlinflow.data.user.remote.response.UserListResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -8,5 +9,5 @@ interface BaseApi {
     suspend fun getAllUser(
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
-    ): ClsUserResponse
+    ): UserListResponse
 }

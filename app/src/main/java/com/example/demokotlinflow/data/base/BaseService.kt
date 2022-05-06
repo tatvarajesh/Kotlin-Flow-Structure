@@ -1,6 +1,7 @@
-package com.example.demokotlinflow.presentation.user.demo2.base
+package com.example.demokotlinflow.data.base
 
 import com.example.demokotlinflow.BuildConfig
+import com.example.demokotlinflow.data.user.BaseApi
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor

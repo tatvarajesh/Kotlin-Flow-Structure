@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.presentation.user.demo2.ui
+package com.example.demokotlinflow.presentation.user.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,11 +9,11 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.demokotlinflow.R
-import com.example.demokotlinflow.presentation.user.demo2.base.ClsUserResponse
+import com.example.demokotlinflow.data.user.remote.response.UserListResponse
 
 
 class UserListAdapter(
-    private val users: ArrayList<ClsUserResponse.Data.User>,
+    private val users: ArrayList<UserListResponse.Data.User>,
     private val context: Context
 ) : RecyclerView.Adapter<UserListAdapter.DataViewHolder>() {
 
@@ -21,10 +21,10 @@ class UserListAdapter(
         private var txtUser: AppCompatTextView = itemView.findViewById(R.id.txtUser)
         private var imgUser: AppCompatImageView = itemView.findViewById(R.id.imgUser)
 
-        fun bind(user: ClsUserResponse.Data.User, context: Context) {
-            txtUser.text = user.name
+        fun bind(userList: UserListResponse.Data.User, context: Context) {
+            txtUser.text = userList.name
             Glide.with(context)
-                .load(user.image)
+                .load(userList.image)
                 .circleCrop()
                 .into(imgUser)
         }
@@ -44,7 +44,7 @@ class UserListAdapter(
         holder.bind(users[position], context)
     }
 
-    fun addData(list: List<ClsUserResponse.Data.User>) {
+    fun addData(list: List<UserListResponse.Data.User>) {
         users.addAll(list)
     }
 }
