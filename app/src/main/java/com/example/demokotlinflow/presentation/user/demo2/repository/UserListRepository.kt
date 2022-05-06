@@ -1,7 +1,7 @@
-package com.example.demokotlinflow.demo2.repository
+package com.example.demokotlinflow.presentation.user.demo2.repository
 
-import com.example.demokotlinflow.demo2.base.BaseApi
-import com.example.demokotlinflow.demo2.base.ClsUserResponse
+import com.example.demokotlinflow.presentation.user.demo2.base.BaseApi
+import com.example.demokotlinflow.presentation.user.demo2.base.ClsUserResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
