@@ -15,22 +15,16 @@
         android:theme="@style/Theme.DemoKotlinFlow"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.user.view.UserListActivity"
-            android:exported="true" >
+            android:name=".presentation.user.view.activity.SecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.user.view.activity.UserListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".presentation.user.demo2.ui.MainActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
     </application>
 

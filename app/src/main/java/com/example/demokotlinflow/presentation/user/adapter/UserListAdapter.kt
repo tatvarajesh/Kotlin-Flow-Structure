@@ -44,7 +44,7 @@ class UserListAdapter(
         holder.bind(users[position], context)
     }
 
-    fun addData(list: List<UserListResponse.Data.User>) {
-        users.addAll(list)
-    }
+//    fun addData(list: List<UserListResponse.Data.User>) {
+//        users.addAll(list)
+//    }
 }

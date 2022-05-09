@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DemoKotlinFlow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="click_to_call_api">Click to call api</string>
+    <string name="move_to_fragment">Move To Fragment</string>
 </resources>

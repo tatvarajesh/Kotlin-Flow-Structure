@@ -17,7 +17,7 @@ object HiltModules {
     }
 
     @Provides
-    fun getUserListUse(): UserListUseCase {
+    fun getUserListUseCase(): UserListUseCase {
         return UserListUseCase(provideUserListRepository())
     }
 }

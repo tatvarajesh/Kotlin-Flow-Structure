@@ -1,13 +1,15 @@
-package com.example.demokotlinflow.presentation.user.view
+package com.example.demokotlinflow.presentation.user.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.demokotlinflow.R
+import com.example.demokotlinflow.data.user.remote.response.UserListResponse
 import com.example.demokotlinflow.presentation.user.adapter.UserListAdapter
 import com.example.demokotlinflow.presentation.user.viewmodel.UserListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +25,10 @@ class UserListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_list)
         initViews()
         initObservers()
+        if (savedInstanceState == null) {
+            userListViewModel.callUserListApi(0)
+        }
+
     }
 
     private fun initObservers() {
@@ -31,8 +37,11 @@ class UserListActivity : AppCompatActivity() {
             userListViewModel.userListStateFlow.collect { clsUserResponse ->
                 progressBar.visibility = View.GONE
                 clsUserResponse.data?.let {
-                    it.users.let { it1 -> userListAdapter.addData(it1) }
-                    userListAdapter.notifyDataSetChanged()
+                    userListAdapter = UserListAdapter(
+                        it.users as ArrayList<UserListResponse.Data.User>,
+                        this@UserListActivity
+                    )
+                    rcvUserList.adapter = userListAdapter
                 }
             }
         }
@@ -55,15 +64,52 @@ class UserListActivity : AppCompatActivity() {
             }
         }
 
+        //way 3
+        /*lifecycleScope.launchWhenCreated {
+            userListViewModel.userListSharedFlow.collectLatest { clsUserResponse ->
+                progressBar.visibility = View.GONE
+                clsUserResponse.data?.let {
+                    userListAdapter = UserListAdapter(
+                        it.users as ArrayList<UserListResponse.Data.User>,
+                        this@UserListActivity
+                    )
+                    rcvUserList.adapter = userListAdapter
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenCreated {
+            userListViewModel.errorSharedFlow.collectLatest {
+                progressBar.visibility = View.GONE
+                Toast.makeText(this@UserListActivity, "" + it, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+        lifecycleScope.launchWhenCreated {
+            userListViewModel.loadingSharedFlow.collectLatest {
+                if (it) {
+                    progressBar.visibility = View.VISIBLE
+                } else {
+                    progressBar.visibility = View.GONE
+                }
+            }
+        }*/
+
     }
 
     private fun initViews() {
-        userListViewModel.callUserListApi()
+        btnCallApi.setOnClickListener {
+            userListViewModel.callUserListApi(10)
+        }
+
+        btnMoveToFragment.setOnClickListener {
+            startActivity(Intent(this, SecondActivity::class.java))
+        }
 
         userListAdapter = UserListAdapter(arrayListOf(), this)
         rcvUserList.adapter = userListAdapter
-
-        val layoutManager = LinearLayoutManager(this)
-        rcvUserList.layoutManager = layoutManager
     }
+
+
 }
