@@ -9,7 +9,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class UserListUseCase @Inject constructor(private val userListRepository: UserListRepository) {
+open class UserListUseCase @Inject constructor(private val userListRepository: UserListRepository) {
     operator fun invoke(offset:Int,limit:Int): Flow<Resource<UserListEntity>> = flow {
         try {
             emit(Resource.Loading())
