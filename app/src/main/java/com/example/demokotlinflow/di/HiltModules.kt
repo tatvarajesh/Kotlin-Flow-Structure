@@ -1,7 +1,10 @@
 package com.example.demokotlinflow.di
 
+import com.example.demokotlinflow.data.user.remote.LoginDataRepository
 import com.example.demokotlinflow.data.user.remote.UserListDataRepository
+import com.example.demokotlinflow.domain.user.LoginRepository
 import com.example.demokotlinflow.domain.user.UserListRepository
+import com.example.demokotlinflow.domain.user.usecase.LoginUseCase
 import com.example.demokotlinflow.domain.user.usecase.UserListUseCase
 import dagger.Module
 import dagger.Provides
@@ -19,5 +22,15 @@ object HiltModules {
     @Provides
     fun getUserListUseCase(): UserListUseCase {
         return UserListUseCase(provideUserListRepository())
+    }
+
+    @Provides
+    fun provideLoginRepository(): LoginRepository {
+        return LoginDataRepository()
+    }
+
+    @Provides
+    fun getLoginUseCase(): LoginUseCase {
+        return LoginUseCase(provideLoginRepository())
     }
 }

@@ -4,4 +4,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="click_to_call_api">Click to call api</string>
     <string name="move_to_fragment">Move To Fragment</string>
+    <string name="move_to_login_screen">Move To Login Screen</string>
+    <string name="hassel_free_battery_exchange">Hassel Free Battery Exchange</string>
+    <string name="anytime_anywhere">Anytime, Anywhere</string>
+    <string name="login">Login</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="new_to_voltup">New to VoltUp?</string>
+    <string name="sign_up">Sign up</string>
+
 </resources>

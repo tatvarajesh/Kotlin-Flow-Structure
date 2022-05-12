@@ -8,19 +8,34 @@
 
     <Button
         android:id="@+id/btnCallApi"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/click_to_call_api"
         android:textAllCaps="false"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toStartOf="@id/btnMoveToLoginScreen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/btnMoveToLoginScreen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/move_to_login_screen"
+        android:textAllCaps="false"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toEndOf="@id/btnCallApi"
+        app:layout_constraintEnd_toStartOf="@id/btnMoveToFragment"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/btnMoveToFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/move_to_fragment"
+        android:layout_margin="5dp"
         android:textAllCaps="false"
+        app:layout_constraintStart_toEndOf="@id/btnMoveToLoginScreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +45,7 @@
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCallApi" />
+        app:layout_constraintTop_toBottomOf="@id/btnMoveToLoginScreen" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -1,13 +1,13 @@
 package com.example.demokotlinflow.presentation.user.viewmodel
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.demokotlinflow.data.base.Resource
+import com.example.demokotlinflow.data.user.remote.request.LoginRequest
+import com.example.demokotlinflow.domain.user.entity.LoginEntity
 import com.example.demokotlinflow.domain.user.entity.UserListEntity
-import com.example.demokotlinflow.domain.user.usecase.UserListUseCase
+import com.example.demokotlinflow.domain.user.usecase.LoginUseCase
 import com.example.demokotlinflow.util.isNetworkAvailable
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -18,14 +18,14 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-open class UserListViewModel @Inject constructor(
-    private var userListUseCase: UserListUseCase,
+open class LoginViewModel @Inject constructor(
+    private var loginUseCase: LoginUseCase,
     @ApplicationContext val context: Context
 ) : ViewModel() {
 
     //    //way 1
-    private val _userListStateFlow = MutableStateFlow(UserListEntity())
-    val userListStateFlow = _userListStateFlow as StateFlow<UserListEntity>
+    private val _loginStateFlow = MutableStateFlow(LoginEntity())
+    val loginStateFlow = _loginStateFlow as StateFlow<LoginEntity>
 
     private val _loadingStateFlow = MutableStateFlow(false)
     val loadingStateFlow = _loadingStateFlow as StateFlow<Boolean>
@@ -33,20 +33,26 @@ open class UserListViewModel @Inject constructor(
     private val _errorStateFlow = MutableStateFlow("")
     val errorStateFlow = _errorStateFlow as StateFlow<String>
 
-    fun callUserListApi(offset: Int) {
+    fun callLoginApi(mobileNumber: String, password: String) {
         if (isNetworkAvailable(context)) {
-            userListUseCase(offset, 10).onEach {
+            loginUseCase(
+                LoginRequest(
+                    "dQxz-LISRX22j_K9H8aJy_:APA91bFAP5O7UjxrCiS4xLLLiq6EZ1K1UKsogV1Yw2btqTABo6SqeGiK_Qrigrqmpwig1zQUgPHJ7DjaHVTU0qB-OTITFV28AkCueqSdJC0itc9Qi7qAOavi1tlxpYQEfYDklPL_oDg9",
+                    mobileNumber,
+                    password
+                )
+            ).onEach {
                 when (it) {
                     is Resource.Loading -> {
                         _loadingStateFlow.value = true
                     }
                     is Resource.Error -> {
                         _loadingStateFlow.value = false
-                        _errorStateFlow.value = it.toString()
+                        _errorStateFlow.value = it.message.toString()
                     }
                     is Resource.Success -> {
                         _loadingStateFlow.value = false
-                        _userListStateFlow.value = it.data as UserListEntity
+                        _loginStateFlow.value = it.data as LoginEntity
                     }
                 }
             }.launchIn(viewModelScope)
@@ -54,7 +60,6 @@ open class UserListViewModel @Inject constructor(
             _errorStateFlow.value = "No network available"
         }
     }
-
 
 
 }

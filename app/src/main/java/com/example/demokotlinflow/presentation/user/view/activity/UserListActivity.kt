@@ -107,6 +107,10 @@ class UserListActivity : AppCompatActivity() {
             startActivity(Intent(this, SecondActivity::class.java))
         }
 
+        btnMoveToLoginScreen.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
         userListAdapter = UserListAdapter(arrayListOf(), this)
         rcvUserList.adapter = userListAdapter
     }
