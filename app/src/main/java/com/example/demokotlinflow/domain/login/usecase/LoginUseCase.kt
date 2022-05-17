@@ -1,10 +1,10 @@
-package com.example.demokotlinflow.domain.user.usecase
+package com.example.demokotlinflow.domain.login.usecase
 
 import com.example.demokotlinflow.data.base.ApiHttpException
 import com.example.demokotlinflow.data.base.Resource
-import com.example.demokotlinflow.data.user.remote.request.LoginRequest
-import com.example.demokotlinflow.domain.user.LoginRepository
-import com.example.demokotlinflow.domain.user.entity.LoginEntity
+import com.example.demokotlinflow.data.login.remote.request.LoginRequest
+import com.example.demokotlinflow.domain.login.LoginRepository
+import com.example.demokotlinflow.domain.login.entity.LoginEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException

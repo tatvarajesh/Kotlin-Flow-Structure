@@ -1,12 +1,12 @@
-package com.example.demokotlinflow.presentation.user.viewmodel
+package com.example.demokotlinflow.presentation.login.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.demokotlinflow.data.base.Resource
-import com.example.demokotlinflow.data.user.remote.request.LoginRequest
-import com.example.demokotlinflow.domain.user.entity.LoginEntity
-import com.example.demokotlinflow.domain.user.usecase.LoginUseCase
+import com.example.demokotlinflow.data.login.remote.request.LoginRequest
+import com.example.demokotlinflow.domain.login.entity.LoginEntity
+import com.example.demokotlinflow.domain.login.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow

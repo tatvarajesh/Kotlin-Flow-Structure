@@ -5,7 +5,8 @@ import android.text.TextUtils
 import com.example.demokotlinflow.util.isNetworkAvailable
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import okhttp3.*
+import okhttp3.Interceptor
+import okhttp3.Response
 import javax.inject.Inject
 
 class NetworkErrorInterceptor @Inject constructor(

@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.data.user.remote.response
+package com.example.demokotlinflow.data.login.remote.response
 
 data class LoginResponse(
     var update_info: UpdateInfo?,

@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.data.user.remote.request
+package com.example.demokotlinflow.data.login.remote.request
 
 data class LoginRequest(
     var device_token: String?,

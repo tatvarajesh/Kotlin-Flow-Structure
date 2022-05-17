@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.presentation.user.view.activity
+package com.example.demokotlinflow.presentation.login.view.activity
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.demokotlinflow.R
-import com.example.demokotlinflow.presentation.user.viewmodel.LoginViewModel
+import com.example.demokotlinflow.presentation.login.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 
