@@ -7,6 +7,6 @@ import retrofit2.http.POST
 
 
 interface BaseApi {
-    @POST("api/v1/verify_cus")
-    suspend fun callLoginCustomer(@Body loginRequest: LoginRequest?): LoginResponse
+//    @POST("api/v1/verify_cus")
+//    suspend fun callLoginCustomer(@Body loginRequest: LoginRequest?): LoginResponse
 }
