@@ -9,17 +9,17 @@
 
     <TextClock
         android:id="@+id/tvToolBarDateTime"
-        android:fontFamily="@font/opensans_regular"
-        android:textSize="8sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
+        android:fontFamily="@font/opensans_regular"
         android:format12Hour="dd MMM, HH:mm"
         android:textColor="@color/color_text"
+        android:textSize="8sp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:layout_width="196dp"
@@ -123,11 +123,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:digits="0123456789"
-                    android:hint="@string/mobile_number"
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="10"
                     android:padding="6dp"
+                    android:text="1100000091"
                     android:textCursorDrawable="@drawable/cursor"
                     android:textSize="10sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -146,10 +146,10 @@
                     android:id="@+id/tietPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/password"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:padding="6dp"
+                    android:text="Demo@123"
                     android:textCursorDrawable="@drawable/cursor"
                     android:textSize="10sp" />
             </com.google.android.material.textfield.TextInputLayout>

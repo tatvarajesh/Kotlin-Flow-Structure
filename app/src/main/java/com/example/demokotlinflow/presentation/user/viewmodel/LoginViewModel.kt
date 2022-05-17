@@ -6,9 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.demokotlinflow.data.base.Resource
 import com.example.demokotlinflow.data.user.remote.request.LoginRequest
 import com.example.demokotlinflow.domain.user.entity.LoginEntity
-import com.example.demokotlinflow.domain.user.entity.UserListEntity
 import com.example.demokotlinflow.domain.user.usecase.LoginUseCase
-import com.example.demokotlinflow.util.isNetworkAvailable
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,32 +32,26 @@ open class LoginViewModel @Inject constructor(
     val errorStateFlow = _errorStateFlow as StateFlow<String>
 
     fun callLoginApi(mobileNumber: String, password: String) {
-        if (isNetworkAvailable(context)) {
-            loginUseCase(
-                LoginRequest(
-                    "dQxz-LISRX22j_K9H8aJy_:APA91bFAP5O7UjxrCiS4xLLLiq6EZ1K1UKsogV1Yw2btqTABo6SqeGiK_Qrigrqmpwig1zQUgPHJ7DjaHVTU0qB-OTITFV28AkCueqSdJC0itc9Qi7qAOavi1tlxpYQEfYDklPL_oDg9",
-                    mobileNumber,
-                    password
-                )
-            ).onEach {
-                when (it) {
-                    is Resource.Loading -> {
-                        _loadingStateFlow.value = true
-                    }
-                    is Resource.Error -> {
-                        _loadingStateFlow.value = false
-                        _errorStateFlow.value = it.message.toString()
-                    }
-                    is Resource.Success -> {
-                        _loadingStateFlow.value = false
-                        _loginStateFlow.value = it.data as LoginEntity
-                    }
+        loginUseCase(
+            LoginRequest(
+                "dQxz-LISRX22j_K9H8aJy_:APA91bFAP5O7UjxrCiS4xLLLiq6EZ1K1UKsogV1Yw2btqTABo6SqeGiK_Qrigrqmpwig1zQUgPHJ7DjaHVTU0qB-OTITFV28AkCueqSdJC0itc9Qi7qAOavi1tlxpYQEfYDklPL_oDg9",
+                mobileNumber,
+                password
+            )
+        ).onEach {
+            when (it) {
+                is Resource.Loading -> {
+                    _loadingStateFlow.value = true
                 }
-            }.launchIn(viewModelScope)
-        } else {
-            _errorStateFlow.value = "No network available"
-        }
+                is Resource.Error -> {
+                    _loadingStateFlow.value = false
+                    _errorStateFlow.value = it.message.toString()
+                }
+                is Resource.Success -> {
+                    _loadingStateFlow.value = false
+                    _loginStateFlow.value = it.data as LoginEntity
+                }
+            }
+        }.launchIn(viewModelScope)
     }
-
-
 }

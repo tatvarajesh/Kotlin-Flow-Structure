@@ -42,6 +42,14 @@ android {
     dataBinding {
         enabled true
     }
+
+    flavorDimensions "environment"
+    productFlavors {
+        local {
+            dimension "environment"
+            buildConfigField 'String', 'VOLTUP_BASE_URL', '"https://preprod-voltup-api.voltup.in/"'
+        }
+    }
 }
 
 dependencies {
