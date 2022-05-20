@@ -19,3 +19,12 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.example.demokotlinflow.data.login.remote.request.LoginRequest
+-keep class com.example.demokotlinflow.data.login.remote.response.LoginResponse
+-keep class com.example.demokotlinflow.data.logout.remote.request.LogoutRequest
+-keep class com.example.demokotlinflow.data.logout.remote.response.LogoutResponse
+-keep class com.example.demokotlinflow.data.base.ApiHttpException
+
+
+
