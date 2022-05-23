@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DemoKotlinFlow"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddOnActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.login.view.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -23,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.addon.view.activity.AddOnActivity" />
     </application>
 
 </manifest>

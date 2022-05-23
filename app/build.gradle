@@ -93,4 +93,14 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.38.1"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
     kapt "com.google.dagger:hilt-compiler:2.38.1"
+
+    def nav_version = "2.4.2"
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }

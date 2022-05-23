@@ -1,7 +1,10 @@
 package com.example.demokotlinflow.di
 
+import com.example.demokotlinflow.data.addon.remote.AddOnDataRepository
 import com.example.demokotlinflow.data.login.remote.LoginDataRepository
 import com.example.demokotlinflow.data.logout.remote.LogoutDataRepository
+import com.example.demokotlinflow.domain.addon.AddOnRepository
+import com.example.demokotlinflow.domain.addon.usecase.AddOnUseCase
 import com.example.demokotlinflow.domain.login.LoginRepository
 import com.example.demokotlinflow.domain.login.usecase.LoginUseCase
 import com.example.demokotlinflow.domain.logout.LogoutRepository
@@ -33,5 +36,15 @@ object HiltModules {
     @Provides
     fun getLogoutUseCase(): LogoutUseCase {
         return LogoutUseCase(provideLogoutRepository())
+    }
+
+    @Provides
+    fun provideAddOnRepository(): AddOnRepository {
+        return AddOnDataRepository()
+    }
+
+    @Provides
+    fun getAddOnUseCase(): AddOnUseCase {
+        return AddOnUseCase(provideAddOnRepository())
     }
 }

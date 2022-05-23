@@ -24,7 +24,7 @@ class NetworkErrorInterceptor @Inject constructor(
 
         val request =
             chain.request().newBuilder()
-                .header("Authorization", "Bearer ")
+                .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3NTYsInVzZXJzX3R5cGVfaWQiOjd9.8OglsM4eTqRVnxHQf5Qsue_Zo14d6ZZ3K0iyKQq7adA")
                 .header("requestFrom", "mobile")
                 .header("deviceId", "de55dac5bf9596ee")
                 .header("roleId", "7")

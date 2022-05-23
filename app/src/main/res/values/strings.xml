@@ -15,5 +15,6 @@
     <string name="sign_up">Sign up</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="no_internet_connection_message">Please turn on internet connection to continue</string>
+    <string name="addon">AddOn</string>
 
 </resources>

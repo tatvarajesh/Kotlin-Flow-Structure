@@ -1,5 +1,6 @@
 package com.example.demokotlinflow.presentation.login.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.demokotlinflow.R
+import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity
 import com.example.demokotlinflow.presentation.login.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
@@ -29,8 +31,9 @@ class LoginActivity : AppCompatActivity() {
             loginViewModel.loginStateFlow.collect { loginResponse ->
                 progressBar.visibility = View.GONE
                 loginResponse.let {
-                    if (it.name?.isNotEmpty() == true)
-                        Toast.makeText(this@LoginActivity, "" + it.name, Toast.LENGTH_SHORT).show()
+                    if (it.name?.isNotEmpty() == true && it.toString().lowercase() != "null") {
+                        startActivity(Intent(this@LoginActivity, AddOnActivity::class.java))
+                    }
                 }
 
             }
@@ -39,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             loginViewModel.errorStateFlow.collect {
                 progressBar.visibility = View.GONE
-                if (it.isNotEmpty())
+                if (it.isNotEmpty() && it.lowercase() != "null")
                     Toast.makeText(this@LoginActivity, "" + it, Toast.LENGTH_SHORT).show()
             }
         }

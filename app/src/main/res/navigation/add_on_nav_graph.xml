@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_on_nav_graph"
+    app:startDestination="@id/addOnListFragment">
+
+    <fragment
+        android:id="@+id/addOnListFragment"
+        android:name="com.example.demokotlinflow.presentation.addon.view.fragment.AddOnListFragment"
+        android:label="fragment_add_on_list"
+        tools:layout="@layout/fragment_add_on_list" >
+        <action
+            android:id="@+id/action_addOnListFragment_to_addOnDetailFragment"
+            app:destination="@id/addOnDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addOnDetailFragment"
+        android:name="com.example.demokotlinflow.presentation.addon.view.fragment.AddOnDetailFragment"
+        android:label="fragment_add_on_detail"
+        tools:layout="@layout/fragment_add_on_detail" />
+</navigation>
