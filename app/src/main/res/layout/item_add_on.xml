@@ -6,7 +6,7 @@
 
         <variable
             name="customerAddon"
-            type="com.example.demokotlinflow.data.addon.remote.response.AddOnResponse.CustomerAddon" />
+            type="com.example.demokotlinflow.domain.addon.entity.AddOnEntity" />
 
     </data>
 

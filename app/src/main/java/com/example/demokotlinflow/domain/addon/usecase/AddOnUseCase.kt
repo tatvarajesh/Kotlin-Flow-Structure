@@ -1,12 +1,10 @@
 package com.example.demokotlinflow.domain.addon.usecase
 
-import com.example.demokotlinflow.data.base.ApiHttpException
-import com.example.demokotlinflow.data.base.Resource
-import com.example.demokotlinflow.data.login.remote.request.LoginRequest
+import com.example.demokotlinflow.data.base.remote.ApiHttpException
+import com.example.demokotlinflow.data.base.remote.Resource
 import com.example.demokotlinflow.domain.addon.AddOnRepository
 import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
-import com.example.demokotlinflow.domain.login.LoginRepository
-import com.example.demokotlinflow.domain.login.entity.LoginEntity
+import com.example.demokotlinflow.util.isNetworkAvailable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
@@ -17,11 +15,14 @@ class AddOnUseCase @Inject constructor(private val addOnRepository: AddOnReposit
         customerId: String,
         per: Int,
         page: Int
-    ): Flow<Resource<AddOnEntity>> = flow {
+    ): Flow<Resource<List<AddOnEntity>>> = flow {
         try {
             emit(Resource.Loading())
-            val addOnData = addOnRepository.callCustomerAddOn(customerId, per, page)
-            emit(Resource.Success(addOnData))
+            var  addOnData = addOnRepository.callCustomerAddOn(customerId, per, page)
+
+            addOnData?.let {
+                emit(Resource.Success(addOnData))
+            }
         } catch (e: ApiHttpException) {
             emit(Resource.Error(e.getErrorMessage()))
         } catch (e: IOException) {

@@ -2,7 +2,8 @@ package com.example.demokotlinflow.presentation.addon.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.demokotlinflow.data.base.Resource
+import com.example.demokotlinflow.data.addon.local.AddOnDao
+import com.example.demokotlinflow.data.base.remote.Resource
 import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
 import com.example.demokotlinflow.domain.addon.usecase.AddOnUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,10 +16,13 @@ import javax.inject.Inject
 @HiltViewModel
 class AddOnViewModel @Inject constructor(
     private var addOnUseCase: AddOnUseCase,
+    private var addOnDao: AddOnDao
 ) : ViewModel() {
 
-    private val _addOnStateFlow = MutableStateFlow(AddOnEntity())
-    val addOnStateFlow = _addOnStateFlow as StateFlow<AddOnEntity>
+    private val _addOnEntityStateFlow = MutableStateFlow<List<AddOnEntity>>(arrayListOf())
+    val addOnEntityStateFlow = _addOnEntityStateFlow as StateFlow<List<AddOnEntity>>
+
+    val _addOnEntityDBListStateFlow = MutableStateFlow<List<AddOnEntity>>(arrayListOf())
 
     private val _loadingStateFlow = MutableStateFlow(false)
     val loadingStateFlow = _loadingStateFlow as StateFlow<Boolean>
@@ -38,9 +42,19 @@ class AddOnViewModel @Inject constructor(
                 }
                 is Resource.Success -> {
                     _loadingStateFlow.value = false
-                    _addOnStateFlow.value = it.data as AddOnEntity
+                    _addOnEntityStateFlow.value = it.data as List<AddOnEntity>
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    suspend fun insertAddOnsToDatabase(customerAddons: ArrayList<AddOnEntity>) {
+        addOnDao.insertAddOns(customerAddons)
+    }
+
+    fun getAllFromDB(){
+       addOnDao.getAllAddOnsFromDb().onEach {
+           _addOnEntityDBListStateFlow.value = it
+       }.launchIn(viewModelScope)
     }
 }

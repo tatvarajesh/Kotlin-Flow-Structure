@@ -1,6 +1,6 @@
 package com.example.demokotlinflow.data.login.remote
 
-import com.example.demokotlinflow.data.base.CommonService
+import com.example.demokotlinflow.data.base.remote.CommonService
 import com.example.demokotlinflow.data.login.remote.request.LoginRequest
 import com.example.demokotlinflow.domain.login.LoginRepository
 import com.example.demokotlinflow.domain.login.entity.LoginEntity

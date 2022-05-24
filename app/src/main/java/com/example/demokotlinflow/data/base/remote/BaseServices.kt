@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.data.base
+package com.example.demokotlinflow.data.base.remote
 
 import androidx.annotation.CallSuper
 import com.example.demokotlinflow.BuildConfig

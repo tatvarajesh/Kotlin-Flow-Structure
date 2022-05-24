@@ -3,7 +3,7 @@ package com.example.demokotlinflow.presentation.login.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.demokotlinflow.data.base.Resource
+import com.example.demokotlinflow.data.base.remote.Resource
 import com.example.demokotlinflow.data.login.remote.request.LoginRequest
 import com.example.demokotlinflow.domain.login.entity.LoginEntity
 import com.example.demokotlinflow.domain.login.usecase.LoginUseCase

@@ -1,19 +1,14 @@
 package com.example.demokotlinflow.domain.addon.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.demokotlinflow.data.addon.remote.response.AddOnResponse
 
+@Entity(tableName = "table_addon")
 data class AddOnEntity(
-    var customer_addons: List<AddOnResponse.CustomerAddon?>? = null
-) {
-    data class CustomerAddon(
-        var id: Int?,
-        var addon_name: String?,
-        var addon_price: String?,
-        var swap_count_validity: Int?,
-        var discount_amount: Int?,
-        var discount_percentage: Any?,
-        var percentage_max_discount_amount: Any?,
-        var swap_counter: Int?,
-        var addon_usage_status: String?
-    )
-}
+        @PrimaryKey var id: Int? = null,
+        var addon_name: String? = null,
+        var addon_price: String? = null,
+        var discount_amount: Int? = null,
+        var addon_usage_status: String? = null
+)

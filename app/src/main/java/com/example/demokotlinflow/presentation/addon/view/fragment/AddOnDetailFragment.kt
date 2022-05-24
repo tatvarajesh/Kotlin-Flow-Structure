@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.example.demokotlinflow.R
 import com.example.demokotlinflow.data.addon.remote.response.AddOnResponse
 import com.example.demokotlinflow.databinding.FragmentAddOnDetailBinding
+import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
 import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity
 import com.example.demokotlinflow.presentation.base.ActivityFragmentAnnotation
 import com.example.demokotlinflow.presentation.base.BaseFragment
@@ -27,12 +28,14 @@ class AddOnDetailFragment : BaseFragment<FragmentAddOnDetailBinding>() {
 
     override fun initViews() {
         (activity as AddOnActivity).manageToolBar()
-        val addOnDetail: AddOnResponse.CustomerAddon? = AddOnActivity.addOnList[AddOnActivity.addOnPos]
-        binding.txtId.text = "Id: "+addOnDetail?.id.toString()
-        binding.txtName.text = "Name: "+addOnDetail?.addon_name
-        binding.txtPrice.text = "Price: "+addOnDetail?.addon_price
-        binding.txtDiscountAmount.text = "Discount Amount: "+addOnDetail?.discount_amount.toString()
-        binding.txtUsageStatus.text = "Usage Status: "+addOnDetail?.addon_usage_status
+        val addOnDetail: AddOnEntity =
+            AddOnActivity.addOnList[AddOnActivity.addOnPos]
+        binding.txtId.text = "Id: " + addOnDetail?.id.toString()
+        binding.txtName.text = "Name: " + addOnDetail?.addon_name
+        binding.txtPrice.text = "Price: " + addOnDetail?.addon_price
+        binding.txtDiscountAmount.text =
+            "Discount Amount: " + addOnDetail?.discount_amount.toString()
+        binding.txtUsageStatus.text = "Usage Status: " + addOnDetail?.addon_usage_status
     }
 
     override fun initObservers() {

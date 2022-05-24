@@ -1,13 +1,14 @@
 package com.example.demokotlinflow.domain.addon
 
-import com.example.demokotlinflow.data.login.remote.request.LoginRequest
+import androidx.room.Query
 import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
-import com.example.demokotlinflow.domain.login.entity.LoginEntity
-import retrofit2.http.Body
-import retrofit2.http.Query
+import kotlinx.coroutines.flow.Flow
 
 interface AddOnRepository {
     suspend fun callCustomerAddOn(customerId: String,
                                   per: Int,
-                                  page: Int): AddOnEntity
+                                  page: Int): List<AddOnEntity>?
+
+//    suspend fun insertAddOns(userList: List<AddOnEntity>)
+//    fun getAllAddOnsFromDb(): List<AddOnEntity>
 }

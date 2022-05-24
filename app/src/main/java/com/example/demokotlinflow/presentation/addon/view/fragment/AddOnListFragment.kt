@@ -1,6 +1,7 @@
 package com.example.demokotlinflow.presentation.addon.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -8,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.demokotlinflow.R
 import com.example.demokotlinflow.data.addon.remote.response.AddOnResponse
 import com.example.demokotlinflow.databinding.FragmentAddOnListBinding
+import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
 import com.example.demokotlinflow.presentation.addon.adapter.AddOnAdapter
 import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity
 import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity.Companion.addOnList
@@ -15,12 +17,12 @@ import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity
 import com.example.demokotlinflow.presentation.addon.viewmodel.AddOnViewModel
 import com.example.demokotlinflow.presentation.base.ActivityFragmentAnnotation
 import com.example.demokotlinflow.presentation.base.BaseFragment
-import kotlinx.android.synthetic.main.activity_add_on.*
 
 @ActivityFragmentAnnotation(contentId = R.layout.fragment_add_on_list)
 class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
     private val addOnViewModel: AddOnViewModel by activityViewModels()
     private lateinit var addOnAdapter: AddOnAdapter
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -37,17 +39,19 @@ class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
     }
 
     override fun initViews() {
+        addOnViewModel.getAllFromDB()
     }
 
 
     override fun initObservers() {
         lifecycleScope.launchWhenCreated {
-            addOnViewModel.addOnStateFlow.collect { addOnResponse ->
+            addOnViewModel.addOnEntityStateFlow.collect { addOnResponse ->
                 binding.progressBar.visibility = View.GONE
                 addOnResponse.let {
-                    if (it.customer_addons?.isEmpty() == false) {
-                        addOnList = it.customer_addons as ArrayList<AddOnResponse.CustomerAddon?>
-                        addOnAdapter = AddOnAdapter(requireContext(), it.customer_addons) {
+                    if (it.size != 0) {
+                        addOnList = it as ArrayList<AddOnEntity>
+                        addOnViewModel.insertAddOnsToDatabase(it as ArrayList<AddOnEntity>)
+                        addOnAdapter = AddOnAdapter(requireContext(), it) {
                             (activity as AddOnActivity).navigate(R.id.action_addOnListFragment_to_addOnDetailFragment)
                             addOnPos = it
                         }
@@ -72,6 +76,12 @@ class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
                 } else {
                     binding.progressBar.visibility = View.GONE
                 }
+            }
+        }
+
+        lifecycleScope.launchWhenCreated {
+            addOnViewModel._addOnEntityDBListStateFlow.collect {
+                Log.e("-->",""+it.size)
             }
         }
     }

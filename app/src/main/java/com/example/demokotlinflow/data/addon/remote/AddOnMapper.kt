@@ -3,6 +3,12 @@ package com.example.demokotlinflow.data.addon.remote
 import com.example.demokotlinflow.data.addon.remote.response.AddOnResponse
 import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
 
-fun mapAddOnData(addOnResponse: AddOnResponse?): AddOnEntity {
-    return AddOnEntity(customer_addons = addOnResponse?.customer_addons)
+fun AddOnResponse.map() = this.customer_addons?.map {
+    AddOnEntity(
+        it?.id,
+        it?.addon_name,
+        it?.addon_price,
+        it?.discount_amount,
+        it?.addon_usage_status
+    )
 }

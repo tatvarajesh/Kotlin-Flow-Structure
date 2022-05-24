@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.data.base
+package com.example.demokotlinflow.data.base.remote
 
 sealed class Resource<T>(val data: Any? = null, val message: String? = null) {
     class Success<T>(data: Any) : Resource<T>(data)

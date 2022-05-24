@@ -1,4 +1,4 @@
-package com.example.demokotlinflow.data.base
+package com.example.demokotlinflow.data.base.remote
 
 import android.os.Parcel
 import android.os.Parcelable

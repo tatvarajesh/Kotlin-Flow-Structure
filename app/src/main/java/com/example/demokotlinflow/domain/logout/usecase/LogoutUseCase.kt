@@ -1,7 +1,7 @@
 package com.example.demokotlinflow.domain.logout.usecase
 
-import com.example.demokotlinflow.data.base.ApiHttpException
-import com.example.demokotlinflow.data.base.Resource
+import com.example.demokotlinflow.data.base.remote.ApiHttpException
+import com.example.demokotlinflow.data.base.remote.Resource
 import com.example.demokotlinflow.data.logout.remote.request.LogoutRequest
 import com.example.demokotlinflow.domain.logout.LogoutRepository
 import com.example.demokotlinflow.domain.logout.entity.LogoutEntity
