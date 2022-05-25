@@ -21,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        startActivity(Intent(this@LoginActivity, AddOnActivity::class.java))
+
         initViews()
         initObservers()
 
@@ -67,10 +69,10 @@ class LoginActivity : AppCompatActivity() {
             } else if (TextUtils.isEmpty(tietPassword.text.toString())) {
                 Toast.makeText(this, "Enter password.", Toast.LENGTH_SHORT).show()
             } else {
-                loginViewModel.callLoginApi(
-                    tietMobile.text.toString(),
-                    tietPassword.text.toString()
-                )
+//                loginViewModel.callLoginApi(
+//                    tietMobile.text.toString(),
+//                    tietPassword.text.toString()
+//                )
             }
         }
     }

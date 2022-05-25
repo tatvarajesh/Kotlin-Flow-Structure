@@ -1,5 +1,6 @@
 package com.example.demokotlinflow.domain.addon
 
+import androidx.lifecycle.LiveData
 import androidx.room.Query
 import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
 import kotlinx.coroutines.flow.Flow
@@ -9,6 +10,6 @@ interface AddOnRepository {
                                   per: Int,
                                   page: Int): List<AddOnEntity>?
 
-//    suspend fun insertAddOns(userList: List<AddOnEntity>)
-//    fun getAllAddOnsFromDb(): List<AddOnEntity>
+    suspend fun insertAddOns(userList: List<AddOnEntity>)
+    fun getAllAddOnsFromDb(): List<AddOnEntity>
 }

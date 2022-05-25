@@ -47,7 +47,7 @@ object HiltModules {
 
     @Provides
     fun provideAddOnRepository(): AddOnRepository {
-        return AddOnDataRepository()
+        return AddOnDataRepository(providesAddOnDao(providesAddOnDatabase(MyApp.instance)))
     }
 
     @Provides

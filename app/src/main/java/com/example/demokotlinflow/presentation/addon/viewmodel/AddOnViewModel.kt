@@ -22,8 +22,6 @@ class AddOnViewModel @Inject constructor(
     private val _addOnEntityStateFlow = MutableStateFlow<List<AddOnEntity>>(arrayListOf())
     val addOnEntityStateFlow = _addOnEntityStateFlow as StateFlow<List<AddOnEntity>>
 
-    val _addOnEntityDBListStateFlow = MutableStateFlow<List<AddOnEntity>>(arrayListOf())
-
     private val _loadingStateFlow = MutableStateFlow(false)
     val loadingStateFlow = _loadingStateFlow as StateFlow<Boolean>
 
@@ -52,9 +50,4 @@ class AddOnViewModel @Inject constructor(
         addOnDao.insertAddOns(customerAddons)
     }
 
-    fun getAllFromDB(){
-       addOnDao.getAllAddOnsFromDb().onEach {
-           _addOnEntityDBListStateFlow.value = it
-       }.launchIn(viewModelScope)
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.demokotlinflow.data.addon.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,6 +14,6 @@ interface AddOnDao {
     suspend fun insertAddOns(userList: List<AddOnEntity>)
 
     @Query("SELECT * FROM table_addon")
-    fun getAllAddOnsFromDb(): Flow<List<AddOnEntity>>
+    fun getAllAddOnsFromDb(): List<AddOnEntity>
 
 }

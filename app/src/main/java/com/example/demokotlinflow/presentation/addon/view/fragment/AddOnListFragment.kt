@@ -17,6 +17,8 @@ import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity
 import com.example.demokotlinflow.presentation.addon.viewmodel.AddOnViewModel
 import com.example.demokotlinflow.presentation.base.ActivityFragmentAnnotation
 import com.example.demokotlinflow.presentation.base.BaseFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @ActivityFragmentAnnotation(contentId = R.layout.fragment_add_on_list)
 class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
@@ -39,7 +41,7 @@ class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
     }
 
     override fun initViews() {
-        addOnViewModel.getAllFromDB()
+
     }
 
 
@@ -50,12 +52,12 @@ class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
                 addOnResponse.let {
                     if (it.size != 0) {
                         addOnList = it as ArrayList<AddOnEntity>
-                        addOnViewModel.insertAddOnsToDatabase(it as ArrayList<AddOnEntity>)
                         addOnAdapter = AddOnAdapter(requireContext(), it) {
                             (activity as AddOnActivity).navigate(R.id.action_addOnListFragment_to_addOnDetailFragment)
                             addOnPos = it
                         }
                         binding.rcvAddOn.adapter = addOnAdapter
+                        addOnViewModel.insertAddOnsToDatabase(it as ArrayList<AddOnEntity>)
                     }
                 }
             }
@@ -79,11 +81,7 @@ class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
             }
         }
 
-        lifecycleScope.launchWhenCreated {
-            addOnViewModel._addOnEntityDBListStateFlow.collect {
-                Log.e("-->",""+it.size)
-            }
-        }
+
     }
 
     override fun apiCalls() {

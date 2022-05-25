@@ -5,8 +5,10 @@ import com.example.demokotlinflow.data.base.remote.Resource
 import com.example.demokotlinflow.domain.addon.AddOnRepository
 import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
 import com.example.demokotlinflow.util.isNetworkAvailable
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import java.io.IOException
 import javax.inject.Inject
 
@@ -16,13 +18,22 @@ class AddOnUseCase @Inject constructor(private val addOnRepository: AddOnReposit
         per: Int,
         page: Int
     ): Flow<Resource<List<AddOnEntity>>> = flow {
+
+
         try {
             emit(Resource.Loading())
-            var  addOnData = addOnRepository.callCustomerAddOn(customerId, per, page)
+            val addOnData: List<AddOnEntity>? = if (isNetworkAvailable()) {
+                addOnRepository.callCustomerAddOn(customerId, per, page)
+            } else {
+                withContext(Dispatchers.IO) {
+                    addOnRepository.getAllAddOnsFromDb()
+                }
+            }
 
             addOnData?.let {
                 emit(Resource.Success(addOnData))
             }
+
         } catch (e: ApiHttpException) {
             emit(Resource.Error(e.getErrorMessage()))
         } catch (e: IOException) {
@@ -30,4 +41,6 @@ class AddOnUseCase @Inject constructor(private val addOnRepository: AddOnReposit
         } catch (e: Exception) {
         }
     }
+
+
 }
