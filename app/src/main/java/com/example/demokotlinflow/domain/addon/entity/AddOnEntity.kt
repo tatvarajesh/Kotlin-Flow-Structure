@@ -6,7 +6,8 @@ import com.example.demokotlinflow.data.addon.remote.response.AddOnResponse
 
 @Entity(tableName = "table_addon")
 data class AddOnEntity(
-        @PrimaryKey var id: Int? = null,
+        @PrimaryKey(autoGenerate = true) var index: Int = 0,
+        var id: Int? = null,
         var addon_name: String? = null,
         var addon_price: String? = null,
         var discount_amount: Int? = null,

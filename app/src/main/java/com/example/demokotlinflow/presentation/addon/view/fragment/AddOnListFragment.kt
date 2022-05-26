@@ -1,24 +1,21 @@
 package com.example.demokotlinflow.presentation.addon.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.demokotlinflow.R
-import com.example.demokotlinflow.data.addon.remote.response.AddOnResponse
 import com.example.demokotlinflow.databinding.FragmentAddOnListBinding
 import com.example.demokotlinflow.domain.addon.entity.AddOnEntity
 import com.example.demokotlinflow.presentation.addon.adapter.AddOnAdapter
 import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity
-import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity.Companion.addOnList
 import com.example.demokotlinflow.presentation.addon.view.activity.AddOnActivity.Companion.addOnPos
 import com.example.demokotlinflow.presentation.addon.viewmodel.AddOnViewModel
 import com.example.demokotlinflow.presentation.base.ActivityFragmentAnnotation
 import com.example.demokotlinflow.presentation.base.BaseFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.demokotlinflow.util.GsonBuilderUtil
+import com.example.demokotlinflow.util.isNetworkAvailable
 
 @ActivityFragmentAnnotation(contentId = R.layout.fragment_add_on_list)
 class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
@@ -49,15 +46,20 @@ class AddOnListFragment : BaseFragment<FragmentAddOnListBinding>() {
         lifecycleScope.launchWhenCreated {
             addOnViewModel.addOnEntityStateFlow.collect { addOnResponse ->
                 binding.progressBar.visibility = View.GONE
-                addOnResponse.let {
-                    if (it.size != 0) {
-                        addOnList = it as ArrayList<AddOnEntity>
-                        addOnAdapter = AddOnAdapter(requireContext(), it) {
-                            (activity as AddOnActivity).navigate(R.id.action_addOnListFragment_to_addOnDetailFragment)
+                addOnResponse.let {addonList->
+                    if (addonList.size != 0) {
+                        if (isNetworkAvailable()){
+                            addOnViewModel.insertAddOnsToDatabase(addonList as ArrayList<AddOnEntity>)
+                        }
+                        addOnAdapter = AddOnAdapter(requireContext(), addonList) {
+                            val bundle = Bundle()
+                            val addOnJsonString: String? = GsonBuilderUtil().getGsonParser()?.toJson(addonList[it])
+                            bundle.putString("addOn", addOnJsonString)
+
+                            (activity as AddOnActivity).navigateWithBundle(R.id.action_addOnListFragment_to_addOnDetailFragment,bundle)
                             addOnPos = it
                         }
                         binding.rcvAddOn.adapter = addOnAdapter
-                        addOnViewModel.insertAddOnsToDatabase(it as ArrayList<AddOnEntity>)
                     }
                 }
             }

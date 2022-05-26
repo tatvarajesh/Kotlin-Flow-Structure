@@ -54,7 +54,7 @@ object HiltModules {
     fun getAddOnUseCase(): AddOnUseCase {
         return AddOnUseCase(provideAddOnRepository())
     }
-//
+
     //db
     @Provides
     @Singleton

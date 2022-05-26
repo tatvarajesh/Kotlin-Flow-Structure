@@ -22,7 +22,6 @@ class AddOnActivity : AppCompatActivity() {
 
     companion object {
         var addOnPos = 0
-        var addOnList: ArrayList<AddOnEntity> = arrayListOf()
     }
 
 
@@ -45,7 +44,11 @@ class AddOnActivity : AppCompatActivity() {
         navController = navHostFragment.navController
     }
 
-    fun navigate(destination: Int) {
+    fun navigateWithBundle(destination: Int, bundle: Bundle) {
+        navController.navigate(destination,bundle)
+    }
+
+    fun navigate(destination: Int, bundle: Bundle) {
         navController.navigate(destination)
     }
 
