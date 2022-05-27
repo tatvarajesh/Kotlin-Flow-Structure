@@ -47,7 +47,7 @@ class AddOnViewModel @Inject constructor(
     }
 
     suspend fun insertAddOnsToDatabase(customerAddons: ArrayList<AddOnEntity>) {
-        addOnDao.insertAddOns(customerAddons)
+        addOnDao.insertAll(customerAddons)
     }
 
 }

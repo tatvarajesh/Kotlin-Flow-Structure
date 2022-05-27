@@ -26,7 +26,7 @@ class AddOnDataRepository @Inject constructor(var addOnDao: AddOnDao) :
     }
 
     override suspend fun insertAddOns(userList: List<AddOnEntity>) {
-        addOnDao.insertAddOns(userList)
+        addOnDao.insertAll(userList)
     }
 
     override fun getAllAddOnsFromDb(): List<AddOnEntity> {
