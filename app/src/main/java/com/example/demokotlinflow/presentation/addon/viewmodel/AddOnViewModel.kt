@@ -29,7 +29,7 @@ class AddOnViewModel @Inject constructor(
     val errorStateFlow = _errorStateFlow as StateFlow<String>
 
     fun callAddOnApi() {
-        addOnUseCase("756",20,1).onEach {
+        addOnUseCase("756", 20, 1).onEach {
             when (it) {
                 is Resource.Loading -> {
                     _loadingStateFlow.value = true
@@ -41,12 +41,15 @@ class AddOnViewModel @Inject constructor(
                 is Resource.Success -> {
                     _loadingStateFlow.value = false
                     _addOnEntityStateFlow.value = it.data as List<AddOnEntity>
+                    if (!it.isFromDb) {
+                        insertAddOnsToDatabase(_addOnEntityStateFlow.value as ArrayList<AddOnEntity>)
+                    }
                 }
             }
         }.launchIn(viewModelScope)
     }
 
-    suspend fun insertAddOnsToDatabase(customerAddons: ArrayList<AddOnEntity>) {
+    private suspend fun insertAddOnsToDatabase(customerAddons: ArrayList<AddOnEntity>) {
         addOnDao.insertAll(customerAddons)
     }
 

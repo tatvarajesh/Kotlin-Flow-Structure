@@ -18,29 +18,25 @@ class AddOnUseCase @Inject constructor(private val addOnRepository: AddOnReposit
         per: Int,
         page: Int
     ): Flow<Resource<List<AddOnEntity>>> = flow {
-
-
         try {
             emit(Resource.Loading())
-            val addOnData: List<AddOnEntity>? = if (isNetworkAvailable()) {
-                addOnRepository.callCustomerAddOn(customerId, per, page)
+            if (isNetworkAvailable()) {
+                val addOnData: List<AddOnEntity>? =
+                    addOnRepository.callCustomerAddOn(customerId, per, page)
+                emit(Resource.Success(addOnData))
             } else {
-                withContext(Dispatchers.IO) {
+                val addOnData: List<AddOnEntity> = withContext(Dispatchers.IO) {
                     addOnRepository.getAllAddOnsFromDb()
                 }
+                emit(Resource.Success(addOnData, true))
             }
-
-            addOnData?.let {
-                emit(Resource.Success(addOnData))
-            }
-
         } catch (e: ApiHttpException) {
             emit(Resource.Error(e.getErrorMessage()))
         } catch (e: IOException) {
             emit(Resource.Error(message = e.message.toString()))
         } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Resource.Error(message = e.localizedMessage ?: "Exception found"))
         }
     }
-
-
 }
