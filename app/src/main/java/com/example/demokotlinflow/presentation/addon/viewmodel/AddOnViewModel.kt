@@ -1,5 +1,6 @@
 package com.example.demokotlinflow.presentation.addon.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.demokotlinflow.data.addon.local.AddOnDao
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +21,8 @@ class AddOnViewModel @Inject constructor(
     private var addOnDao: AddOnDao
 ) : ViewModel() {
 
-    private val _addOnEntityStateFlow = MutableStateFlow<List<AddOnEntity>>(arrayListOf())
+     val _addOnEntityStateFlow = MutableStateFlow<List<AddOnEntity>>(arrayListOf())
+     val _addOnStateFlow = MutableStateFlow<String>("")
     val addOnEntityStateFlow = _addOnEntityStateFlow as StateFlow<List<AddOnEntity>>
 
     private val _loadingStateFlow = MutableStateFlow(false)

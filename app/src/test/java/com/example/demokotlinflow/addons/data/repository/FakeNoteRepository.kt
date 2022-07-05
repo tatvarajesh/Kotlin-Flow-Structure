@@ -7,7 +7,7 @@ class FakeNoteRepository : AddOnRepository {
 
     private val notes = mutableListOf<AddOnEntity>()
 
-    override suspend fun callCustomerAddOn(
+    override suspend open fun callCustomerAddOn(
         customerId: String,
         per: Int,
         page: Int

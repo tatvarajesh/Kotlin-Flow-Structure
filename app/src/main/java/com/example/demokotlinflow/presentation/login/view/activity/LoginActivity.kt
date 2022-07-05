@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        startActivity(Intent(this@LoginActivity, AddOnActivity::class.java))
+//        startActivity(Intent(this@LoginActivity, AddOnActivity::class.java))
 
         initViews()
         initObservers()
@@ -62,18 +62,21 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initViews() {
         fabLogin.setOnClickListener {
-            if (TextUtils.isEmpty(tietMobile.text.toString()) && TextUtils.isEmpty(tietPassword.text.toString())) {
-                Toast.makeText(this, "Enter credentials.", Toast.LENGTH_SHORT).show()
-            } else if (TextUtils.isEmpty(tietMobile.text.toString())) {
-                Toast.makeText(this, "Enter mobile number.", Toast.LENGTH_SHORT).show()
-            } else if (TextUtils.isEmpty(tietPassword.text.toString())) {
-                Toast.makeText(this, "Enter password.", Toast.LENGTH_SHORT).show()
-            } else {
+//            if (TextUtils.isEmpty(tietMobile.text.toString()) && TextUtils.isEmpty(tietPassword.text.toString())) {
+//                Toast.makeText(this, "Enter credentials.", Toast.LENGTH_SHORT).show()
+//            } else if (TextUtils.isEmpty(tietMobile.text.toString())) {
+//                Toast.makeText(this, "Enter mobile number.", Toast.LENGTH_SHORT).show()
+//            } else if (TextUtils.isEmpty(tietPassword.text.toString())) {
+//                Toast.makeText(this, "Enter password.", Toast.LENGTH_SHORT).show()
+//            } else {
 //                loginViewModel.callLoginApi(
 //                    tietMobile.text.toString(),
 //                    tietPassword.text.toString()
 //                )
-            }
+                startActivity(Intent(this@LoginActivity, AddOnActivity::class.java))
+//            }
         }
     }
 }
+
+//cred 9639639631 Demo@123

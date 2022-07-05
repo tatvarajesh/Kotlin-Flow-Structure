@@ -127,7 +127,6 @@
                     android:inputType="number"
                     android:maxLength="10"
                     android:padding="6dp"
-                    android:text="9639639631"
                     android:textCursorDrawable="@drawable/cursor"
                     android:textSize="10sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -149,7 +148,6 @@
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:padding="6dp"
-                    android:text="Demo@123"
                     android:textCursorDrawable="@drawable/cursor"
                     android:textSize="10sp" />
             </com.google.android.material.textfield.TextInputLayout>
