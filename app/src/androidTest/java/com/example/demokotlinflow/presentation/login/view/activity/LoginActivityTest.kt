@@ -57,8 +57,8 @@ class LoginActivityTest{
         Espresso.onView(withId(R.id.tietMobile)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.tietPassword)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        Espresso.onView(withId(R.id.tietMobile)).perform(ViewActions.typeText("963963963"))
-        Espresso.onView(withId(R.id.tietPassword)).perform(ViewActions.typeText("Demo@12"))
+        Espresso.onView(withId(R.id.tietMobile)).perform(ViewActions.typeText("9639639631"))
+        Espresso.onView(withId(R.id.tietPassword)).perform(ViewActions.typeText("Demo@123"))
         closeSoftKeyboard()
         Espresso.onView(withId(R.id.fabLogin)).perform(ViewActions.click())
 
