@@ -18,8 +18,8 @@ jobs:
       - name: Build with gradle
         run: chmod +x ./gradlew build
 
-#      - name: Upload apk
-#        uses: actions/upload-artifact@v2.1.4
-#        with:
-#          name: app
-#          path: app/build/outputs/apk/debug/app-local-debug.apk
+      - name: Upload apk
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: app
+          path: app/build/outputs/
