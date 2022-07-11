@@ -23,3 +23,5 @@ jobs:
         with:
           name: app
           path: app/build/outputs/apk/local/debug
+#          path: app/build/outputs/apk/local/release   --generate release flavor
+#          path: app/build/outputs/apk/local/   --generate all flavor
