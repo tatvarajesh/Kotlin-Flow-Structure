@@ -27,6 +27,12 @@ jobs:
       - name: Unit test
         run: ./gradlew test
 
+      - name: Upload test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: instrumentation_test_report
+          path: app/build/reports/
+
   instrumentation-test:
     runs-on: macos-latest
 
