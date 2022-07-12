@@ -51,27 +51,27 @@ class LoginActivityTest{
     }
 
 
-
-    @Test
-    fun check_invalid_input_fields(){
-        Espresso.onView(withId(R.id.tietMobile)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(withId(R.id.tietPassword)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
-        Espresso.onView(withId(R.id.tietMobile)).perform(ViewActions.typeText("9639639631"))
-        Espresso.onView(withId(R.id.tietPassword)).perform(ViewActions.typeText("Demo@123"))
-        closeSoftKeyboard()
-        Espresso.onView(withId(R.id.fabLogin)).perform(ViewActions.click())
-
-        assert(false
-        ) {
-            Espresso.onView(withId(R.id.tietMobile))
-                .check(ViewAssertions.matches(withText("963963963")))
-        }
-
-        assert(false
-        ) {
-            Espresso.onView(withId(R.id.tietPassword)).check(ViewAssertions.matches(withText("Demo@12")))
-        }
-
-    }
+//
+//    @Test
+//    fun check_invalid_input_fields(){
+//        Espresso.onView(withId(R.id.tietMobile)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+//        Espresso.onView(withId(R.id.tietPassword)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+//
+//        Espresso.onView(withId(R.id.tietMobile)).perform(ViewActions.typeText("9639639631"))
+//        Espresso.onView(withId(R.id.tietPassword)).perform(ViewActions.typeText("Demo@123"))
+//        closeSoftKeyboard()
+//        Espresso.onView(withId(R.id.fabLogin)).perform(ViewActions.click())
+//
+//        assert(false
+//        ) {
+//            Espresso.onView(withId(R.id.tietMobile))
+//                .check(ViewAssertions.matches(withText("963963963")))
+//        }
+//
+//        assert(false
+//        ) {
+//            Espresso.onView(withId(R.id.tietPassword)).check(ViewAssertions.matches(withText("Demo@12")))
+//        }
+//
+//    }
 }
