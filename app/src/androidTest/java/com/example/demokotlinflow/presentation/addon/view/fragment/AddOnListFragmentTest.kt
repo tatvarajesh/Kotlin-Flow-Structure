@@ -34,10 +34,10 @@ class AddOnListFragmentTest {
 //    val ADDON_IN_TEST = FakeAddOnData.addonList[LIST_ITEM_IN_TEST - 1]
 //
 //
-//    @Test
-//    fun test_isListFragmentVisible_onAppLaunch() {
-//        onView(withId(com.example.demokotlinflow.R.id.rcvAddOn)).check(matches(isDisplayed()))
-//    }
+    @Test
+    fun test_isListFragmentVisible_onAppLaunch() {
+        onView(withId(com.example.demokotlinflow.R.id.rcvAddOn)).check(matches(isDisplayed()))
+    }
 //
 //
 //    @Test
