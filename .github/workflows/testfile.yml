@@ -4,8 +4,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run a one-line script
-        run: echo Hello, new test!
 
       - name: Set up JDK
         uses: actions/setup-java@v1
@@ -25,3 +23,6 @@ jobs:
           path: app/build/outputs/apk/local/debug
 #          path: app/build/outputs/apk/local/release   --generate release flavor
 #          path: app/build/outputs/apk/local/   --generate all flavor
+
+      - name: Unit test
+        run: chmod +x ./gradlew test
