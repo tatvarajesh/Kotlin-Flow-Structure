@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test_report
-          path: app/build/reports/
+          path: app/build/reports/tests/testLocalDebugUnitTest
 
   instrumentation-test:
     runs-on: macos-latest
