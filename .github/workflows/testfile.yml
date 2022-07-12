@@ -25,4 +25,4 @@ jobs:
 #          path: app/build/outputs/apk/local/   --generate all flavor
 
       - name: Unit test
-        run: chmod +x ./gradlew test
+        run: ./gradlew test
