@@ -56,7 +56,7 @@ jobs:
         with:
           java-version: 11
 
-      - name: Run esresso test
+      - name: Run espresso test
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
