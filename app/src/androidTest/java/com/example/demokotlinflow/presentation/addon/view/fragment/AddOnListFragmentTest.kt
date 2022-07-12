@@ -40,42 +40,42 @@ class AddOnListFragmentTest {
     }
 //
 //
-    @Test
-    fun test_rcv_item_click() {
-        onView(withId(com.example.demokotlinflow.R.id.rcvAddOn)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<AddOnAdapter.AddOnViewHolder>(
-                0,
-                MyViewAction().clickChildViewWithId(com.example.demokotlinflow.R.id.txtName)
-            )
-        )
-    }
-
-    @Test
-    fun test_fragment_navigation() {
-        val args = Bundle()
-        val navhostScenario: FragmentScenario<AddOnListFragment> =
-            launchInContainer(AddOnListFragment::class.java, args, theme, Lifecycle.State.STARTED)
-
-        navhostScenario.onFragment { fragment: AddOnListFragment ->
-
-            assertNotNull(fragment.activity)
-            val navController = TestNavHostController(fragment.activity!!)
-            fragment.activity!!.runOnUiThread { navController.setGraph(com.example.demokotlinflow.R.navigation.add_on_nav_graph) }
-            Navigation.setViewNavController(fragment.requireView(), navController)
-
-            onView(withId(com.example.demokotlinflow.R.id.rcvAddOn)).perform(
-                RecyclerViewActions.actionOnItemAtPosition<AddOnAdapter.AddOnViewHolder>(
-                    0,
-                    MyViewAction().clickChildViewWithId(com.example.demokotlinflow.R.id.txtName)
-                )
-            )
-
-            // Then navigate
-            navController.navigate(com.example.demokotlinflow.R.id.action_addOnListFragment_to_addOnDetailFragment)
-            val destination = navController.currentDestination
-            assertNotNull(destination)
-            assertEquals(destination!!.id, com.example.demokotlinflow.R.id.addOnDetailFragment)
-        }
-    }
+//    @Test
+//    fun test_rcv_item_click() {
+//        onView(withId(com.example.demokotlinflow.R.id.rcvAddOn)).perform(
+//            RecyclerViewActions.actionOnItemAtPosition<AddOnAdapter.AddOnViewHolder>(
+//                0,
+//                MyViewAction().clickChildViewWithId(com.example.demokotlinflow.R.id.txtName)
+//            )
+//        )
+//    }
+//
+//    @Test
+//    fun test_fragment_navigation() {
+//        val args = Bundle()
+//        val navhostScenario: FragmentScenario<AddOnListFragment> =
+//            launchInContainer(AddOnListFragment::class.java, args, theme, Lifecycle.State.STARTED)
+//
+//        navhostScenario.onFragment { fragment: AddOnListFragment ->
+//
+//            assertNotNull(fragment.activity)
+//            val navController = TestNavHostController(fragment.activity!!)
+//            fragment.activity!!.runOnUiThread { navController.setGraph(com.example.demokotlinflow.R.navigation.add_on_nav_graph) }
+//            Navigation.setViewNavController(fragment.requireView(), navController)
+//
+//            onView(withId(com.example.demokotlinflow.R.id.rcvAddOn)).perform(
+//                RecyclerViewActions.actionOnItemAtPosition<AddOnAdapter.AddOnViewHolder>(
+//                    0,
+//                    MyViewAction().clickChildViewWithId(com.example.demokotlinflow.R.id.txtName)
+//                )
+//            )
+//
+//            // Then navigate
+//            navController.navigate(com.example.demokotlinflow.R.id.action_addOnListFragment_to_addOnDetailFragment)
+//            val destination = navController.currentDestination
+//            assertNotNull(destination)
+//            assertEquals(destination!!.id, com.example.demokotlinflow.R.id.addOnDetailFragment)
+//        }
+//    }
 
 }
