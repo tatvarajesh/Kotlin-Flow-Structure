@@ -24,13 +24,24 @@ jobs:
       #          path: app/build/outputs/apk/local/release   --generate release flavor
       #          path: app/build/outputs/apk/local/   --generate all flavor
 
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
       - name: Unit test
         run: ./gradlew test
 
       - name: Upload test report
         uses: actions/upload-artifact@v2
         with:
-          name: test_report
+          name: unit_test_report
           path: app/build/reports/tests/testLocalDebugUnitTest
 
   instrumentation-test:
