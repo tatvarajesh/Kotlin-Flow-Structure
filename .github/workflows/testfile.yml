@@ -26,11 +26,18 @@ jobs:
 
       - name: Unit test
         run: ./gradlew test
+
   instrumentation-test:
     runs-on: macos-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
 
       - name: Run esresso test
         uses: reactivecircus/android-emulator-runner@v2
