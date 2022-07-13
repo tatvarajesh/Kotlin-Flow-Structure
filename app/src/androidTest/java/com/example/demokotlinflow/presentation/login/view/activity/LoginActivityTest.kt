@@ -51,7 +51,7 @@ class LoginActivityTest{
     }
 
 
-//
+
 //    @Test
 //    fun check_invalid_input_fields(){
 //        Espresso.onView(withId(R.id.tietMobile)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
@@ -72,6 +72,5 @@ class LoginActivityTest{
 //        ) {
 //            Espresso.onView(withId(R.id.tietPassword)).check(ViewAssertions.matches(withText("Demo@12")))
 //        }
-//
 //    }
 }
