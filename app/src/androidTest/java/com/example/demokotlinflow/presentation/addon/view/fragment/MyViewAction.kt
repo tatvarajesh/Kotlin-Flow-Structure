@@ -17,8 +17,8 @@ class MyViewAction {
                 }
 
                 override fun perform(uiController: UiController?, view: View) {
-                    val v: View = view.findViewById(id)
-                    v.performClick()
+//                    val v: View = view.findViewById(id)
+//                    v.performClick()
                 }
             }
         }
