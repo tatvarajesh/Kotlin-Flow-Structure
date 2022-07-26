@@ -14,7 +14,7 @@ jobs:
         run: ./gradlew assemble
 
       - name: Build with gradle
-        if: github.event.schedule != '* * * * 5'
+        if: github.event.schedule != '* * * * 2'
         run: chmod +x ./gradlew build
 
       - name: Upload apk
