@@ -3,7 +3,7 @@ on:
     branches:
       - CI_CD
   schedule:
-    - cron: "41 16 * * 2"
+    - cron: "55 16 * * 2"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,11 +19,11 @@ jobs:
         run: ./gradlew assemble
 
       - name: Build with gradle
-        if: github.event.schedule != '41 16 * * 2'
+        if: github.event.schedule != '55 16 * * 2'
         run: chmod +x ./gradlew build
 
       - name: Upload apk
-        if: github.event.schedule != '41 16 * * 2'
+        if: github.event.schedule != '55 16 * * 2'
         uses: actions/upload-artifact@v2.1.4
         with:
           name: app
