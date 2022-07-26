@@ -14,11 +14,11 @@ jobs:
         run: ./gradlew assemble
 
       - name: Build with gradle
-        if: github.event.schedule != '* * * * 2'
+        if: github.event.schedule = '30 2 * * 2'
         run: chmod +x ./gradlew build
 
       - name: Upload apk
-        if: github.event.schedule != '* * * * 2'
+        if: github.event.schedule != '30 2 * * 2'
         uses: actions/upload-artifact@v2.1.4
         with:
           name: app
