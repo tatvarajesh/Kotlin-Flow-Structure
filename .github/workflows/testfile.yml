@@ -17,11 +17,9 @@ jobs:
         run: ./gradlew assemble
 
       - name: Build with gradle
-#        if: github.event.schedule != '55 16 * * 2'
         run: chmod +x ./gradlew build
 
       - name: Upload debug apk
-#        if: github.event.schedule != '55 16 * * 2'
         uses: actions/upload-artifact@v2.1.4
         with:
           name: debug app
@@ -32,14 +30,12 @@ jobs:
         with:
           name: release app
           path: app/build/outputs/apk/local/release/*.apk
-      #          path: app/build/outputs/apk/local/   --generate all flavor
 
-
-       - name: Upload all apk
-         uses: actions/upload-artifact@v2.1.4
-         with:
-           name: apps
-           path: app/build/outputs/apk/local/
+      - name: Upload all apk
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: apps
+          path: app/build/outputs/apk/local/
 
   unit-test:
     runs-on: ubuntu-latest
