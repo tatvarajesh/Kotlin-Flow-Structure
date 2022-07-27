@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v2.1.4
         with:
           name: apps
-          path: app/build/outputs/apk/local/*.apk
+          path: app/build/outputs/apk/local/*
 
   unit-test:
     runs-on: ubuntu-latest
