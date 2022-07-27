@@ -1,0 +1,30 @@
+on:
+  push:
+    branches:
+      - CI_CD
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build project
+        run: ./gradlew assemble
+
+      - name: Build with gradle
+        #        if: github.event.schedule != '55 16 * * 2'
+        run: chmod +x ./gradlew build
+
+      - name: Upload apk
+        #        if: github.event.schedule != '55 16 * * 2'
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: app
+          path: app/build/outputs/apk/local/debug/*.apk
+
+
