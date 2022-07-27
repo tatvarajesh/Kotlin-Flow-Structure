@@ -30,7 +30,7 @@ jobs:
       - name: Upload release apk
         uses: actions/upload-artifact@v2.1.4
         with:
-          name:release app
+          name: release app
           path: app/build/outputs/apk/local/release/*.apk
       #          path: app/build/outputs/apk/local/   --generate all flavor
 
