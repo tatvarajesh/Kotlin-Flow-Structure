@@ -1,3 +1,4 @@
+name: Cron scheduler
 on:
 #  push:
 #    branches:
