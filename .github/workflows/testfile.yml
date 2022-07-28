@@ -61,7 +61,7 @@ jobs:
 
 
   instrumentation-test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
