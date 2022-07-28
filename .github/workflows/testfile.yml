@@ -5,6 +5,8 @@ on:
 #      - CI_CD
   schedule:
     - cron: '21 2 * * *'
+  workflow_dispatch:
+    
 jobs:
   build:
     runs-on: windows-latest
