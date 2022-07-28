@@ -1,88 +1,107 @@
-name: Cron scheduler
-on:
+#on:
 #  push:
 #    branches:
 #      - CI_CD
+#  schedule:
+#    - cron: "2 * * * *"
+#jobs:
+#  build:
+#    runs-on: windows-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Set up JDK
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 11
+#
+#      - name: Build project
+#        run: ./gradlew assemble
+#
+#      - name: Build with gradle
+#        run: chmod +x ./gradlew build
+#
+#      - name: Upload debug apk
+#        uses: actions/upload-artifact@v2.1.4
+#        with:
+#          name: debug app
+#          path: app/build/outputs/apk/local/debug/*.apk
+#
+#      - name: Upload release apk
+#        uses: actions/upload-artifact@v2.1.4
+#        with:
+#          name: release app
+#          path: app/build/outputs/apk/local/release/*.apk
+#
+#      - name: Upload all apk
+#        uses: actions/upload-artifact@v2.1.4
+#        with:
+#          name: apps
+#          path: app/build/outputs/apk/local/*
+#
+#  unit-test:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Set up JDK
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 11
+#
+#      - name: Unit test
+#        run: ./gradlew test
+#
+#      - name: Upload test report
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: unit_test_report
+#          path: app/build/reports/tests/testLocalDebugUnitTest
+#
+#
+#  instrumentation-test:
+#    runs-on: macos-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Set up JDK
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 11
+#
+#      - name: Run espresso test
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 29
+#          script: ./gradlew connectedCheck
+#
+#      - name: Upload test report
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: instrumentation_test_report
+#          path: app/build/reports/androidTests/connected/
+#
+
+name: First Cron Job
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow every 5 minutes
   schedule:
-    - cron: "2 * * * *"
+    - cron: "*/1 * * * *"
+
+    # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Build project
-        run: ./gradlew assemble
-
-      - name: Build with gradle
-        run: chmod +x ./gradlew build
-
-      - name: Upload debug apk
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: debug app
-          path: app/build/outputs/apk/local/debug/*.apk
-
-      - name: Upload release apk
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: release app
-          path: app/build/outputs/apk/local/release/*.apk
-
-      - name: Upload all apk
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: apps
-          path: app/build/outputs/apk/local/*
-
-  unit-test:
+  # This workflow contains a single job called "cron"
+  cron:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Unit test
-        run: ./gradlew test
-
-      - name: Upload test report
-        uses: actions/upload-artifact@v2
-        with:
-          name: unit_test_report
-          path: app/build/reports/tests/testLocalDebugUnitTest
-
-
-  instrumentation-test:
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Run espresso test
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedCheck
-
-      - name: Upload test report
-        uses: actions/upload-artifact@v2
-        with:
-          name: instrumentation_test_report
-          path: app/build/reports/androidTests/connected/
-
-
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
