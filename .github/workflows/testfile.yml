@@ -1,8 +1,8 @@
 name: Demo
 on:
-#  push:
-#    branches:
-#      - CI_CD
+  push:
+    branches:
+      - CI_CD
   schedule:
     - cron: '2 * * * *'
   workflow_dispatch:
