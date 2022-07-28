@@ -1,9 +1,10 @@
+name: Demo
 on:
-  push:
+#  push:
 #    branches:
 #      - CI_CD
   schedule:
-    - cron: "2 * * * *"
+    - cron: "20 14 * * *"
 jobs:
   build:
     runs-on: windows-latest
