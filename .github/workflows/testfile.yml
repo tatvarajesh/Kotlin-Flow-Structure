@@ -4,9 +4,9 @@ on:
 #    branches:
 #      - CI_CD
   schedule:
-    - cron: '21 2 * * *'
+    - cron: '*/2 * * * *'
   workflow_dispatch:
-    
+
 jobs:
   build:
     runs-on: windows-latest
