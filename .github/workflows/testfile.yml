@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - CI_CD
-  schedule:
-    - cron: '2 * * * *'
+#  schedule:
+#    - cron: '2 * * * *'
   workflow_dispatch:
 
 jobs:
